@@ -47,11 +47,8 @@ st.markdown("""
 st.title("🔐 Ultimate Password Strength Meter")
 
 # Show/Hide Password Toggle
-show_password = st.checkbox("👁 Show Password")
-if show_password:
-    password = st.text_input("Enter your password:", type="default")  # Show password as plain text
-else:
-    password = st.text_input("Enter your password:", type="password")  # Hide password
+password = st.text_input("Enter your password:", type="password"  )
+
 
 
 if password:
