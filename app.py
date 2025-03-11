@@ -2,7 +2,9 @@ import streamlit as st
 import zxcvbn
 import random
 import string
-import pyperclip
+
+
+
 
 # Configure Streamlit Page
 st.set_page_config(page_title="🔐 Advanced Password Strength Meter", page_icon="🔒", layout="centered")
@@ -86,18 +88,20 @@ if password:
 
 # Generate Strong Password
 st.subheader("🔑 Need a Strong Password?")
-def generate_password(length=16):
+def generate_password(length=12):
     characters = string.ascii_letters + string.digits + string.punctuation
-    return ''.join(random.choice(characters) for _ in range(length))
+    return ''.join(random.choice(characters) for i in range(length))
 
-generated_password = generate_password()
 
-if st.button("🎲 Generate Strong Password"):
-    st.success(f"🔐 **Generated Password:** `{generated_password}`")
 
-    # Copy to Clipboard (Manually)
-    pyperclip.copy(generated_password)
-    st.markdown("✅ Password copied to clipboard!")
+# Generate password
+if st.button("Generate Strong Password"):
+    generated_password = generate_password()
+    
+    # Show password in a read-only text input
+    st.text_input("Generated Password", generated_password, key="password", disabled=False)
+
+    st.success("✅ Copy manually by selecting the text!")
 
 # Footer
 st.markdown("---")
